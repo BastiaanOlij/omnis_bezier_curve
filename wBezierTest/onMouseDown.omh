@@ -1,0 +1,7 @@
+;  We use a timer that is active while our mouse is down to reposition our points
+
+Calculate ivMousePoint as pvPoint
+Do method getMousePos Returns ivMouseLastPos
+
+;  Not using a timer that automatically restarts, tends to fill up the event queue..
+Do $cinst.$objs.MouseHandler.$starttimer()

@@ -1,0 +1,216 @@
+[
+	{
+		"name": "$construct",
+		"ident": 1,
+		"order": 1,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$destruct",
+		"ident": 2,
+		"order": 2,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "-- mouse",
+		"ident": 6,
+		"order": 3,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		],
+		"empty": true
+	},
+	{
+		"name": "getMousePos",
+		"ident": 7,
+		"order": 4,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvMousePos",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "onMouseDown",
+		"ident": 0,
+		"order": 5,
+		"pvardefs": [
+			{
+				"name": "pvPoint",
+				"order": 1,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "-- bezier line",
+		"ident": 4,
+		"order": 6,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		],
+		"empty": true
+	},
+	{
+		"name": "makeBezierLine",
+		"ident": 3,
+		"order": 7,
+		"pvardefs": [
+			{
+				"name": "pvSegments",
+				"order": 5,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1,
+				"initval": "7"
+			},
+			{
+				"name": "pvColor",
+				"order": 4,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 2,
+				"initval": "kBlack"
+			},
+			{
+				"name": "pvVisible",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 3,
+				"initval": "kTrue"
+			}
+		],
+		"lvardefs": [
+			{
+				"name": "lvList",
+				"order": 1,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRef",
+				"order": 2,
+				"type": "kItemref",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "positionBezierLine",
+		"ident": 5,
+		"order": 8,
+		"pvardefs": [
+			{
+				"name": "pvLineList",
+				"order": 1,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0,
+				"param": 1,
+				"desc": "List with lines to use"
+			}
+		],
+		"lvardefs": [
+			{
+				"name": "lvCnt",
+				"order": 10,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvFrom",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0,
+				"desc": "From this point"
+			},
+			{
+				"name": "lvP0",
+				"order": 5,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0
+			},
+			{
+				"name": "lvP1",
+				"order": 6,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0
+			},
+			{
+				"name": "lvP2",
+				"order": 7,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0
+			},
+			{
+				"name": "lvP3",
+				"order": 8,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0
+			},
+			{
+				"name": "lvRef",
+				"order": 4,
+				"type": "kItemref",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvT",
+				"order": 9,
+				"type": "kNumber",
+				"subtype": "kFloatdp",
+				"sublen": 0
+			},
+			{
+				"name": "lvTo",
+				"order": 3,
+				"type": "kRow",
+				"subtype": "sPoint",
+				"sublen": 0,
+				"desc": "To this point"
+			}
+		]
+	}
+]

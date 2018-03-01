@@ -1,0 +1,42 @@
+;  Setup our control points for our bezier curse
+For lvCnt from 0 to 3 step 1
+	Calculate lvP[lvCnt].X as $cinst.$objs.P[lvCnt].$left+5
+	Calculate lvP[lvCnt].Y as $cinst.$objs.P[lvCnt].$top+5
+End For
+;
+;  Start at our first point
+Calculate lvFrom as lvP0
+;
+;  Reposition
+For pvLineList.$line from 1 to pvLineList.$linecount step 1
+	Set reference lvRef to $cinst.$bobjs.[pvLineList.Ident]
+	
+	;  Update lvTo by calculating our bezier curve
+	Calculate lvT as pvLineList.$line/pvLineList.$linecount
+	Calculate lvTo.X as (pwr(1.0-lvT,3)*lvP0.X)+(3.0*pwr(1.0-lvT,2)*lvT*lvP1.X)+(3.0*(1.0-lvT)*pwr(lvT,2)*lvP2.X)+(pwr(lvT,3)*lvP3.X)
+	Calculate lvTo.Y as (pwr(1.0-lvT,3)*lvP0.Y)+(3.0*pwr(1.0-lvT,2)*lvT*lvP1.Y)+(3.0*(1.0-lvT)*pwr(lvT,2)*lvP2.Y)+(pwr(lvT,3)*lvP3.Y)
+	
+	If lvFrom.X>lvTo.X
+		Calculate lvRef.$left as lvTo.X
+		Calculate lvRef.$top as lvTo.Y
+		Calculate lvRef.$width as lvFrom.X-lvTo.X
+		Calculate lvRef.$height as lvFrom.Y-lvTo.Y     ;; +pick(lvFrom.Y<=lvTo.Y,0,1)
+	Else
+		Calculate lvRef.$left as lvFrom.X
+		Calculate lvRef.$top as lvFrom.Y
+		Calculate lvRef.$width as lvTo.X-lvFrom.X
+		Calculate lvRef.$height as (lvTo.Y-lvFrom.Y)
+	End If
+	
+	;  Fix drawing issues when height becomes negative, note that this applies for lines with thickness 2, might be different when thickness is different
+	;  This is not perfect mind...
+	If lvRef.$height<0
+		Calculate lvRef.$top as lvRef.$top-1
+		Calculate lvRef.$height as lvRef.$height+2
+	Else If lvRef.$height=0
+		Calculate lvRef.$top as lvRef.$top-1
+		Calculate lvRef.$height as lvRef.$height+1
+	End If
+	
+	Calculate lvFrom as lvTo
+End For

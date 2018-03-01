@@ -1,0 +1,11 @@
+Do lvList.$cols.$add('Ident',kInteger,k32bitint)
+While lvList.$linecount<pvSegments
+	Do $cinst.$bobjs.$add(kLine,0,0,5,5) Returns lvRef
+	Calculate lvRef.$bordercolor as pvColor
+	Calculate lvRef.$linestyle as 2
+	Calculate lvRef.$visible as pvVisible
+	
+	Do lvList.$add(lvRef.$ident)
+End While
+
+Quit method lvList

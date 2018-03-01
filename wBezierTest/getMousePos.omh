@@ -1,0 +1,8 @@
+Calculate lvMousePos.X as mouseover(kMHorz)+(8*$cinst.$hscroll)
+Calculate lvMousePos.Y as mouseover(kMVert)+(8*$cinst.$vscroll)
+
+;  If this is a subwindow we also need to subtract our top left
+;  Calculate lvMousePos.X as mouseover(kMHorz)-$cinst.$left+(8*$cinst.$hscroll)
+;  Calculate lvMousePos.Y as mouseover(kMVert)-$cinst.$top+(8*$cinst.$vscroll)
+
+Quit method lvMousePos

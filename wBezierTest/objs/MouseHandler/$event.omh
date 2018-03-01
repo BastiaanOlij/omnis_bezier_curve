@@ -1,0 +1,34 @@
+;  Received a timer message.
+On evTimer
+	Do mouseover(kMItemref) Returns lvOverRef
+	
+	If not(mousedn())
+		;  We are done
+	Else If pos($cinst().$fullname,lvOverRef.$fullname)=0
+		;  Ignore, we're not above our edit area
+		Do $cinst.$objs.MouseHandler.$starttimer()
+	Else
+		Do method getMousePos Returns lvNewMousePos
+		
+		If lvNewMousePos.X<>ivMouseLastPos.X|lvNewMousePos.Y<>ivMouseLastPos.Y
+			;  Apply delta
+			Calculate $cinst.$objs.P[ivMousePoint].$left as $cinst.$objs.P[ivMousePoint].$left-ivMouseLastPos.X+lvNewMousePos.X
+			Calculate $cinst.$objs.P[ivMousePoint].$top as $cinst.$objs.P[ivMousePoint].$top-ivMouseLastPos.Y+lvNewMousePos.Y
+			
+			;  Move control points if we're moving our end points
+			If ivMousePoint=0
+				Calculate $cinst.$objs.P1.$left as $cinst.$objs.P1.$left-ivMouseLastPos.X+lvNewMousePos.X
+				Calculate $cinst.$objs.P1.$top as $cinst.$objs.P1.$top-ivMouseLastPos.Y+lvNewMousePos.Y
+			Else If ivMousePoint=3
+				Calculate $cinst.$objs.P2.$left as $cinst.$objs.P2.$left-ivMouseLastPos.X+lvNewMousePos.X
+				Calculate $cinst.$objs.P2.$top as $cinst.$objs.P2.$top-ivMouseLastPos.Y+lvNewMousePos.Y
+			End If
+			
+			Calculate ivMouseLastPos as lvNewMousePos
+			
+			Do method positionBezierLine (ivBezierLine)
+		End If
+		
+		;  Restart timer only if the mouse is still down
+		Do $cinst.$objs.MouseHandler.$starttimer()
+	End If

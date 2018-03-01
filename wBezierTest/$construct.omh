@@ -1,0 +1,3 @@
+;  Create our line objects for our bezier line
+Do method makeBezierLine (20,kBlack,kTrue) Returns ivBezierLine
+Do method positionBezierLine (ivBezierLine)
